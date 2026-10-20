@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>舌在足矣 · 张仪与一个时代的语言力量</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: #0f1116;
+  --bg-2: #12151c;
+  --panel: #171b24;
+  --panel-2: #1c212c;
+  --ink: #e9e1cf;          /* 米白墨色文字 */
+  --ink-dim: #a49d8b;      /* 次级文字 */
+  --ink-faint: #6b675e;    /* 更弱文字 */
+  --gold: #c8a45c;         /* 古铜金 */
+  --gold-hi: #e2c684;
+  --gold-dim: #8a7445;
+  --vermilion: #c2402e;    /* 朱砂 */
+  --vermilion-hi: #e05a45;
+  --jade: #4e8a7a;         /* 青玉 */
+  --line: rgba(200, 164, 92, 0.22);
+  --line-soft: rgba(233, 225, 207, 0.08);
+  --serif: "Noto Serif SC", "Source Han Serif SC", "STZhongsong", "SimSun", serif;
+  --sans: "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", sans-serif;
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  --radius: 18px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.9;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 背景纹理：细微的宣纸噪点 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(200, 164, 92, 0.06), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(194, 64, 46, 0.05), transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(78, 138, 122, 0.05), transparent 50%);
+}
+
+::selection { background: rgba(200, 164, 92, 0.35); color: #fff; }
+
+/* ============ 顶栏 ============ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+  transition: background .4s, padding .4s, box-shadow .4s;
+}
+.nav.scrolled {
+  background: rgba(15, 17, 22, 0.82);
+  backdrop-filter: blur(14px);
+  padding: 12px 40px;
+  box-shadow: 0 1px 0 var(--line-soft);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-weight: 700;
+  letter-spacing: 4px;
+  font-size: 18px;
+  color: var(--gold);
+}
+.nav-logo span { color: var(--ink-dim); font-weight: 400; font-size: 13px; letter-spacing: 2px; }
+.nav-links { display: flex; gap: 30px; }
+.nav-links a {
+  color: var(--ink-dim);
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 3px;
+  font-family: var(--sans);
+  transition: color .3s;
+}
+.nav-links a:hover { color: var(--gold-hi); }
+
+/* ============ 主视觉 Hero ============ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 8vw 80px;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.hero-bg .ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+}
+.hero-bg .ring.r1 { width: 760px; height: 760px; top: -180px; right: -160px; }
+.hero-bg .ring.r2 { width: 560px; height: 560px; top: -80px; right: -60px; }
+.hero-bg .ring.r3 { width: 360px; height: 360px; top: 20px; right: 40px; }
+.hero-inner { max-width: 1200px; width: 100%; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 60px; align-items: center; }
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 6px;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+.hero-kicker::before { content: ""; width: 40px; height: 1px; background: var(--gold); }
+.hero h1 {
+  font-size: clamp(52px, 8vw, 112px);
+  font-weight: 900;
+  line-height: 1.12;
+  letter-spacing: 8px;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+.hero h1 .hl {
+  background: linear-gradient(120deg, var(--gold-hi), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero-sub {
+  font-size: clamp(20px, 2.6vw, 30px);
+  letter-spacing: 10px;
+  color: var(--ink-dim);
+  margin-bottom: 22px;
+}
+.hero-motto {
+  font-size: 16px;
+  letter-spacing: 4px;
+  color: var(--ink-faint);
+  border-left: 2px solid var(--gold-dim);
+  padding-left: 18px;
+  margin-bottom: 40px;
+}
+.hero-actions { display: flex; gap: 18px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 30px;
+  border-radius: 40px;
+  font-family: var(--sans);
+  font-size: 14px;
+  letter-spacing: 3px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid var(--line);
+  transition: all .3s;
+}
+.btn-primary {
+  background: linear-gradient(120deg, var(--gold), var(--gold-dim));
+  color: #16120a;
+  border-color: transparent;
+  font-weight: 700;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(200, 164, 92, 0.3); }
+.btn-ghost { color: var(--ink-dim); background: transparent; }
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold-hi); }
+.hero-portrait {
+  position: relative;
+  height: 520px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+}
+.hero-portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15,17,22,0.65), transparent 55%);
+}
+.hero-portrait .cap {
+  position: absolute;
+  bottom: 26px; left: 26px; right: 26px;
+  z-index: 2;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--ink);
+}
+.hero-portrait .cap b { display: block; font-size: 20px; letter-spacing: 6px; margin-bottom: 6px; color: #fff; }
+
+.scroll-hint {
+  position: absolute;
+  bottom: 34px; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink-faint);
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-family: var(--sans);
+}
+.scroll-hint .mouse { width: 22px; height: 36px; border: 1px solid var(--ink-faint); border-radius: 12px; position: relative; }
+.scroll-hint .mouse::after { content: ""; position: absolute; top: 6px; left: 50%; width: 3px; height: 8px; background: var(--gold); border-radius: 3px; transform: translateX(-50%); animation: wheel 1.6s infinite; }
+@keyframes wheel { 0% { opacity: 0; transform: translate(-50%, 0); } 40% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, 10px); } }
+
+/* ============ 章节标题通用 ============ */
+.section {
+  position: relative;
+  padding: 110px 8vw;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+.section-head { text-align: center; margin-bottom: 70px; }
+.section-head .eyebrow {
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 8px;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.section-head h2 {
+  font-size: clamp(30px, 4.5vw, 52px);
+  font-weight: 700;
+  letter-spacing: 6px;
+}
+.section-head .rule {
+  width: 60px; height: 2px;
+  margin: 22px auto 0;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.section-head p.desc { color: var(--ink-dim); max-width: 640px; margin: 20px auto 0; font-size: 15px; letter-spacing: 2px; }
+
+/* ============ 3D 环形轮播 ============ */
+.timeline-section { padding-top: 40px; }
+.carousel-scene {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  perspective: 1400px;
+}
+.carousel {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 0; height: 0;
+  transform-style: preserve-3d;
+  transition: transform .9s cubic-bezier(.22, .8, .2, 1);
+}
+.c-card {
+  position: absolute;
+  width: 250px; height: 340px;
+  left: -125px; top: -170px;
+  border-radius: 18px;
+  background: linear-gradient(165deg, #1e2430, var(--panel));
+  border: 1px solid var(--line-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px 16px;
+  cursor: pointer;
+  backface-visibility: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+  transition: border-color .4s, box-shadow .4s, opacity .4s;
+}
+.c-card::before {
+  content: "";
+  position: absolute; inset: 9px;
+  border-radius: 12px;
+  border: 1px solid rgba(200,164,92,0.12);
+  pointer-events: none;
+}
+.c-card .cc-node {
+  width: 74px; height: 74px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 27px; font-weight: 700;
+  color: var(--ink-dim);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  margin-bottom: 22px;
+  transition: all .4s;
+}
+.c-card .cc-tag {
+  font-family: var(--sans);
+  font-size: 11px; letter-spacing: 3px;
+  color: var(--gold-dim);
+  margin-bottom: 10px;
+}
+.c-card .cc-title {
+  font-size: 22px; font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--ink);
+  margin-bottom: 6px;
+  transition: color .4s;
+}
+.c-card .cc-sub { font-size: 13px; color: var(--ink-faint); letter-spacing: 2px; }
+.c-card.active {
+  border-color: var(--gold);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.6), 0 0 46px rgba(200,164,92,0.2);
+}
+.c-card.active .cc-node {
+  background: linear-gradient(135deg, var(--vermilion), #8e2c1f);
+  color: #fff; border-color: var(--vermilion-hi);
+  box-shadow: 0 0 24px rgba(194,64,46,0.5);
+}
+.c-card.active .cc-tag { color: var(--gold); }
+.c-card.active .cc-title { color: #fff; }
+
+.carousel-controls {
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+}
+.c-arrow {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink-dim);
+  cursor: pointer;
+  font-size: 22px;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .3s;
+}
+.c-arrow:hover { border-color: var(--gold); color: var(--gold-hi); transform: scale(1.06); }
+.c-meta {
+  flex: 1;
+  max-width: 620px;
+  text-align: center;
+  padding: 22px 26px;
+  background: var(--panel);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+}
+.c-meta .c-tag { font-family: var(--sans); font-size: 12px; letter-spacing: 5px; color: var(--gold); margin-bottom: 8px; }
+.c-meta .c-title { font-size: 24px; font-weight: 700; letter-spacing: 3px; margin-bottom: 12px; }
+.c-meta .c-guide { font-size: 14.5px; color: var(--ink-dim); line-height: 1.9; margin-bottom: 18px; }
+.c-meta .btn { margin: 0 auto; }
+
+/* ============ 弹窗 ============ */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 9, 12, 0.9);
+  backdrop-filter: blur(8px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity .3s;
+}
+.overlay.show { opacity: 1; }
+.modal {
+  width: 760px;
+  max-width: 100%;
+  max-height: 86vh;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow);
+  transform: translateY(24px) scale(.98);
+  transition: transform .35s cubic-bezier(.2, .8, .2, 1);
+}
+.overlay.show .modal { transform: translateY(0) scale(1); }
+.modal-head {
+  padding: 34px 40px 26px;
+  border-bottom: 1px solid var(--line-soft);
+  position: relative;
+}
+.modal-head .m-tag {
+  font-family: var(--sans);
+  font-size: 12px; letter-spacing: 5px; color: var(--gold);
+  margin-bottom: 10px;
+}
+.modal-head h3 { font-size: 30px; letter-spacing: 3px; font-weight: 700; }
+.modal-head .m-sub { margin-top: 6px; font-size: 16px; color: var(--ink-dim); letter-spacing: 2px; }
+.modal-close {
+  position: absolute; top: 22px; right: 24px;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-dim);
+  font-size: 20px;
+  cursor: pointer;
+  transition: all .3s;
+}
+.modal-close:hover { border-color: var(--vermilion); color: var(--vermilion-hi); transform: rotate(90deg); }
+.modal-body { padding: 28px 40px 20px; overflow-y: auto; }
+.modal-body .guide {
+  font-size: 15.5px;
+  color: var(--gold-hi);
+  letter-spacing: 1px;
+  line-height: 1.9;
+  padding: 18px 22px;
+  background: rgba(200, 164, 92, 0.06);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 12px 12px 0;
+  margin-bottom: 26px;
+}
+.modal-body p.story {
+  font-size: 16px;
+  line-height: 2.1;
+  color: var(--ink);
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+.modal-body p.story.hl-line { color: #fff; font-weight: 600; }
+.modal-body .orig {
+  margin: 26px 0;
+  padding: 22px 24px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-soft);
+  border-radius: 12px;
+  font-size: 14.5px;
+  color: var(--ink-dim);
+  line-height: 2;
+  position: relative;
+}
+.modal-body .orig .orig-tag {
+  font-family: var(--sans);
+  font-size: 11px; letter-spacing: 3px; color: var(--gold-dim);
+  margin-bottom: 10px;
+}
+.modal-foot {
+  padding: 18px 40px 28px;
+  border-top: 1px solid var(--line-soft);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.fact-badge {
+  flex: 1;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 13px;
+  color: var(--ink-dim);
+  line-height: 1.8;
+}
+.fact-badge .mark {
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: rgba(78, 138, 122, 0.18);
+  color: var(--jade);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+.fact-badge .fb-label { color: var(--jade); font-weight: 700; letter-spacing: 1px; }
+
+/* ============ 史论摘录 ============ */
+.quote-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 26px;
+}
+.quote-card {
+  position: relative;
+  padding: 34px 32px 30px;
+  background: var(--panel);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  transition: transform .35s, border-color .35s, box-shadow .35s;
+  overflow: hidden;
+}
+.quote-card::before {
+  content: "“";
+  position: absolute;
+  top: 6px; left: 20px;
+  font-size: 80px;
+  line-height: 1;
+  color: var(--line);
+  font-family: var(--serif);
+}
+.quote-card:hover { transform: translateY(-6px); border-color: var(--line); box-shadow: var(--shadow); }
+.quote-card .q-text {
+  position: relative;
+  font-size: 15.5px;
+  line-height: 2.05;
+  color: var(--ink);
+  letter-spacing: 1px;
+  z-index: 1;
+}
+.quote-card .q-src {
+  margin-top: 20px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  letter-spacing: 2px;
+  color: var(--gold);
+}
+.quote-card .q-src::before { content: "—— "; color: var(--ink-faint); }
+
+/* ============ 现实启示 ============ */
+.lesson-list { display: flex; flex-direction: column; gap: 24px; }
+.lesson {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 28px;
+  padding: 34px 34px 34px 28px;
+  background: var(--panel);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  transition: border-color .35s, transform .35s;
+}
+.lesson:hover { border-color: var(--line); transform: translateX(6px); }
+.lesson .num {
+  font-family: var(--serif);
+  font-size: 46px;
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+  background: linear-gradient(160deg, var(--gold-hi), var(--gold-dim));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  align-self: start;
+}
+.lesson .l-body h3 { font-size: 21px; letter-spacing: 2px; margin-bottom: 14px; }
+.lesson .l-body p { font-size: 15px; color: var(--ink-dim); line-height: 2; margin-bottom: 12px; }
+.lesson .l-body .takeaway {
+  padding: 16px 20px;
+  background: rgba(78, 138, 122, 0.08);
+  border-left: 3px solid var(--jade);
+  border-radius: 0 10px 10px 0;
+  color: var(--ink);
+  font-size: 14.5px;
+  line-height: 1.9;
+}
+.lesson .l-body .takeaway b { color: var(--gold-hi); }
+.lesson .l-body .warn {
+  padding: 16px 20px;
+  background: rgba(194, 64, 46, 0.08);
+  border-left: 3px solid var(--vermilion);
+  border-radius: 0 10px 10px 0;
+  color: var(--ink-dim);
+  font-size: 14.5px;
+  line-height: 1.9;
+}
+.lesson .l-body ul { list-style: none; margin: 6px 0 12px; }
+.lesson .l-body ul li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 14.5px;
+  color: var(--ink-dim);
+  line-height: 1.9;
+  margin-bottom: 8px;
+}
+.lesson .l-body ul li::before { content: "◆"; position: absolute; left: 0; color: var(--gold-dim); font-size: 10px; top: 2px; }
+
+/* ============ 页脚 ============ */
+.footer {
+  padding: 70px 8vw 50px;
+  text-align: center;
+  border-top: 1px solid var(--line-soft);
+  position: relative;
+}
+.footer .f-motto {
+  font-size: 22px;
+  letter-spacing: 6px;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.footer .f-sub { font-size: 14px; letter-spacing: 4px; color: var(--ink-dim); margin-bottom: 30px; }
+.footer .f-note { font-size: 12px; letter-spacing: 2px; color: var(--ink-faint); font-family: var(--sans); }
+
+/* ============ 进入动画 ============ */
+.reveal { opacity: 0; transform: translateY(34px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ============ 响应式 ============ */
+@media (max-width: 980px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-portrait { height: 340px; order: -1; }
+  .timeline-wrap { grid-template-columns: 1fr; gap: 40px; }
+  .tl-portrait { height: 300px; }
+  .nav { padding: 14px 22px; }
+  .nav-links { gap: 16px; }
+  .nav-links a { letter-spacing: 1px; font-size: 12px; }
+}
+@media (max-width: 560px) {
+  .carousel-scene { height: 380px; perspective: 1000px; }
+  .c-card { width: 180px; height: 260px; left: -90px; top: -130px; padding: 18px 12px; }
+  .c-card .cc-node { width: 56px; height: 56px; font-size: 20px; margin-bottom: 14px; }
+  .c-card .cc-title { font-size: 18px; }
+  .carousel-controls { gap: 12px; }
+  .c-arrow { width: 42px; height: 42px; font-size: 18px; }
+  .c-meta { padding: 18px 16px; }
+  .c-meta .c-title { font-size: 19px; }
+  .modal-head { padding: 26px 24px 20px; }
+  .modal-body { padding: 22px 24px 16px; }
+  .modal-foot { padding: 16px 24px 22px; }
+  .section { padding: 80px 6vw; }
+  .lesson { grid-template-columns: 1fr; gap: 14px; }
+  .lesson .num { text-align: left; }
+}
+</style>
+</head>
+<body>
+
+<!-- 顶栏 -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">舌在足矣 <span>· 纵横家张仪</span></div>
+  <div class="nav-links">
+    <a href="#timeline">生平</a>
+    <a href="#quotes">史论</a>
+    <a href="#lessons">启示</a>
+  </div>
+</nav>
+
+<!-- 主视觉 -->
+<header class="hero" id="top">
+  <div class="hero-bg">
+    <div class="ring r1"></div>
+    <div class="ring r2"></div>
+    <div class="ring r3"></div>
+  </div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-kicker">战国 · 纵横家</div>
+      <h1>舌在<span class="hl">足矣</span></h1>
+      <div class="hero-sub">一个时代的语言力量</div>
+      <div class="hero-motto">宠辱不惊，得之不狂，失之不悲。</div>
+      <div class="hero-actions">
+        <a href="#timeline" class="btn btn-primary">进入生平</a>
+        <a href="#lessons" class="btn btn-ghost">读五则启示</a>
+      </div>
+    </div>
+    <div class="hero-portrait reveal">
+      <img src="2.jpg" alt="张仪" />
+      <div class="cap"><b>张仪</b>魏国安邑人 · 鬼谷子门下 · 曾任秦相、魏相</div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="mouse"></div>
+    向下滚动
+  </div>
+</header>
+
+<!-- 3D 环形轮播 -->
+<section class="section timeline-section" id="timeline">
+  <div class="section-head reveal">
+    <div class="eyebrow">CHRONICLE</div>
+    <h2>一生纵横</h2>
+    <div class="rule"></div>
+    <p class="desc">拖动或点击两侧箭头旋转，回溯张仪的一生。</p>
+  </div>
+
+  <div class="carousel-scene reveal" id="scene">
+    <div class="carousel" id="carousel"></div>
+  </div>
+
+  <div class="carousel-controls">
+    <button class="c-arrow" id="prevBtn">‹</button>
+    <div class="c-meta">
+      <div class="c-tag" id="cTag">引子</div>
+      <div class="c-title" id="cTitle">渭水门前 · 落魄书生</div>
+      <div class="c-guide" id="cGuide"></div>
+      <a class="btn btn-primary" id="cOpen">查看全文</a>
+    </div>
+    <button class="c-arrow" id="nextBtn">›</button>
+  </div>
+</section>
+
+<!-- 史论摘录 -->
+<section class="section" id="quotes">
+  <div class="section-head reveal">
+    <div class="eyebrow">HISTORICAL REVIEWS</div>
+    <h2>古人史论摘录</h2>
+    <div class="rule"></div>
+    <p class="desc">太史公、孟子、刘向、李斯……历代如何评说这位倾危之士。</p>
+  </div>
+  <div class="quote-grid" id="quoteGrid"></div>
+</section>
+
+<!-- 现实启示 -->
+<section class="section" id="lessons">
+  <div class="section-head reveal">
+    <div class="eyebrow">LESSONS</div>
+    <h2>五则现实启示</h2>
+    <div class="rule"></div>
+    <p class="desc">以古照今，从张仪的起落中读出属于自己的处世之道。</p>
+  </div>
+  <div class="lesson-list" id="lessonList"></div>
+</section>
+
+<!-- 页脚 -->
+<footer class="footer">
+  <div class="f-motto">舌在，足矣</div>
+  <div class="f-sub">言语自有千钧之力</div>
+  <div class="f-note">本页依据《史记 · 张仪列传》及《舌在足矣——张仪与一个时代的语言力量》整理 · 仅供学习交流</div>
+</footer>
+
+<!-- 弹窗 -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="m-tag" id="mTag">第一章</div>
+      <h3 id="mTitle"></h3>
+      <div class="m-sub" id="mSub"></div>
+      <button class="modal-close" id="modalClose">×</button>
+    </div>
+    <div class="modal-body" id="mBody"></div>
+    <div class="modal-foot">
+      <div class="fact-badge">
+        <div class="mark">✓</div>
+        <div><span class="fb-label">史实核对</span><br><span id="mFact"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============ 章节数据 ============ */
+const chapters = [
+  {
+    node: "起", tag: "引子", title: "渭水门前", sub: "落魄书生",
+    guide: "战国烽烟四起，列国逐鹿天下。有人仗三尺刀剑，拓土开疆；有人凭三寸言辞，搅动时局。一位满身伤痕的魏地游子，伫立秦宫门外，属于他的传奇，自此徐徐启幕。",
+    body: [
+      "秋风卷渭水，漫过咸阳城阙，岁至公元前329年，寒气浸润街巷。",
+      "衣衫褴褛的青年，孑然立在秦宫门前。",
+      "皮肉之上，犹残留楚国牢狱鞭笞的累累伤痕。",
+      "此人便是张仪，魏国安邑之士，受业于鬼谷子，习纵横游说之术。",
+      "历过牢狱折辱，世间几乎将他弃置。",
+      "无人料想，这个三餐难继、潦倒困顿的书生，仅凭口中寸舌，便要倾覆天下格局。"
+    ],
+    hl: [5],
+    fact: "张仪为魏人、鬼谷子门下、楚国受辱后入秦，符合《史记·张仪列传》通行史实。"
+  },
+  {
+    node: "一", tag: "第一章 · 折竹", title: "安邑少年", sub: "求学鬼谷",
+    guide: "魏国安邑，是张仪生长的故土。年少岁月里，于此埋下纵横四海的理想种子。",
+    body: [
+      "张仪生于魏国安邑，幼年丧父，家道清寒。",
+      "乱世浮沉，寻常百姓的性命，一如风中衰草，飘摇无依。",
+      "张仪不甘困守乡井，碌碌终老于尘土。",
+      "听闻云梦山隐者鬼谷子，深谙权谋辩说，开门授徒。",
+      "于是他辞别故土，远赴深山，投身门下。",
+      "潜心揣摩游说之道，静观天下列国消长。",
+      "在鬼谷山中，他悟得一重道理：坚甲利兵可以攻陷城池，唇舌辞辩，亦足以倾覆邦国。",
+      "列国之间的嫌隙纷争，正是纵横之士可以借势起舞的天地。",
+      "学成之后，张仪拜别师门。",
+      "怀揣满腹辩智，踏入波诡云谲的战国乱世。"
+    ],
+    hl: [6],
+    fact: "张仪籍贯、求学经历为正史通行表述；规避“苏秦张仪同门对峙”历史误区，无史实错误。"
+  },
+  {
+    node: "二", tag: "第二章 · 楚狱受辱", title: "玉璧蒙冤", sub: "鞭笞之苦",
+    guide: "满怀才学奔赴楚国游说，无妄祸事骤然降临。而这场刻骨屈辱，也淬炼出流传千载的那句肺腑之言。",
+    body: [
+      "张仪赴楚，投身楚相门下。",
+      "一场宴饮过后，楚相的玉璧莫名遗失。",
+      "门下众人猜忌张仪。",
+      "众口纷纷：张仪家境贫寒，品行卑下，必是他窃走玉璧。",
+      "不容张仪辩白，众人将他拘拿，施以鞭笞数百。",
+      "张仪始终不肯自诬，众人苦无实证，只得将他释放。",
+      "一身伤痛的张仪归家。妻子见他遍体疮痍，黯然垂泪。",
+      "妻子叹道：“你若不读书游说，何至于蒙受这般屈辱？”",
+      "张仪张开嘴巴，向妻子问道：“你看，我的舌头尚在否？”",
+      "妻子一怔，莞尔答道：“舌头还在。”",
+      "张仪缓缓吐出四字：“足矣。”",
+      "只要舌存，辩才未泯，他日依旧可以斡旋天下。"
+    ],
+    hl: [9, 10, 11],
+    orig: "张仪已学而游说诸侯。尝从楚相饮，已而楚相亡璧，门下意张仪，曰：“仪贫无行，必此盗相君之璧。”共执张仪，掠笞数百，不服，醳之。其妻曰：“嘻！子毋读书游说，安得此辱乎？”张仪谓其妻曰：“视吾舌尚在不？”其妻笑曰：“舌在也。”仪曰：“足矣。”",
+    fact: "完全取材《史记·张仪列传》原文对话。"
+  },
+  {
+    node: "三", tag: "第三章 · 西入咸阳", title: "面见秦君", sub: "拜为秦相",
+    guide: "楚国的凌辱未曾磨灭他胸中抱负。他向西奔赴咸阳，寻觅能够施展纵横方略的明主。",
+    body: [
+      "楚地的折辱，并未摧折张仪心志。",
+      "他深知此地，再无自己施展抱负的舞台。",
+      "彼时秦国图谋东出，正渴求智谋之士，联络诸侯列国。",
+      "张仪一路西行，跋涉抵达咸阳，求见秦惠文王。",
+      "面对君王，他剖析天下大势，条陈六国的利害与软肋。",
+      "提出连横之策：分别笼络山东六国，使之亲附秦国，拆解诸侯合纵抗秦的盟约。",
+      "张仪锋芒毕露，秦惠文王深赏其谋略，拜为秦相。",
+      "昔日在楚地受尽鞭打的落魄游士，一朝身居高位。",
+      "不再是一无所有的布衣书生，终于握有践行纵横之术的权柄。"
+    ],
+    hl: [6],
+    fact: "张仪入秦、被秦惠文王重用、推行连横策略，史实准确；规避与苏秦对立的历史错误。"
+  },
+  {
+    node: "四", tag: "第四章 · 连横破合纵", title: "口舌斡旋", sub: "搅动列国",
+    guide: "身居秦相，张仪奔走于诸侯之间。不动兵戈强攻，仅凭言辞，瓦解六国合纵盟约。",
+    body: [
+      "六国忌惮秦国日渐强盛，缔结盟约，合纵一体，共抗强秦。",
+      "一旦合纵稳固，秦国东出之路便会被死死封锁。",
+      "张仪的使命，便是拆散这份诸侯同盟。",
+      "他出使列国，面见各国君主，揣摩每一国的利害得失与忧惧。",
+      "向君王陈明祸福：合纵联盟看似声势浩大，实则各怀私心。各国地域远近不一，危难之际，难以彼此援救。",
+      "若归附秦国，则可避战火，保全社稷；若负隅相抗，祸患转瞬即至。",
+      "张仪游走魏、韩诸国，游说诸侯背弃合纵，与秦国修好。",
+      "沙场征伐，动辄流血千里；而张仪凭一席说辞，淡定自若，便扭转列国的立场取舍。",
+      "纵横之道，不在于蛮力征伐，而在于洞察人心，利用邦国之间的矛盾缝隙。"
+    ],
+    hl: [8],
+    fact: "合纵、连横概念准确，张仪游说魏、韩史实正确，无历史硬伤。"
+  },
+  {
+    node: "五", tag: "第五章 · 功成身退", title: "世事浮沉", sub: "纵横落幕",
+    guide: "山河翻覆，君王更替。曾经搅动四海的纵横格局迎来变局，张仪的人生也走向终章。",
+    body: [
+      "秦惠文王薨逝，新君秦武王即位。",
+      "武王并不欣赏张仪的外交方略，旧臣新王，天意弄人。",
+      "朝堂之上，群臣纷纷进谗诋毁，世态炎凉，昔日功业，渐渐被流言遮蔽。",
+      "列国听闻新君疏远张仪，纷纷背弃与秦国的约定，连横盟约分崩离析。",
+      "张仪自知，已不能立足秦国。",
+      "他向秦武王献谋，主动离开秦国，去往魏国。",
+      "魏王接纳张仪，任用他为魏相，这是他人生最后一方政治舞台。",
+      "一年之后，张仪卒于魏国。",
+      "那个以口舌搅动战国风云的纵横家，走完一生。",
+      "他起于寒微，受过鞭笞之辱；也曾高居相位，周旋万乘诸侯之间。",
+      "不靠甲兵铁骑攻城略地，只凭洞察人心，以言辞撬动天下大势。"
+    ],
+    hl: [10],
+    fact: "惠文王薨、武王不喜张仪、张仪归魏、病逝于魏，完全符合正史。"
+  },
+  {
+    node: "终", tag: "尾声 · 回望纵横", title: "一张口舌", sub: "一段战国风云",
+    guide: "烽烟散尽，战国城池尽化尘土。但张仪那句“舌在足矣”，穿越千载，依旧回响至今。",
+    body: [
+      "战国烽烟早已消散，当年列国城郭，尽埋岁月尘土。",
+      "后世谈及乱世豪杰，多记名将锋刃、沙场杀伐。",
+      "张仪却是其中格外特殊的一类人。",
+      "他手中无百万甲兵，身无长剑。",
+      "独恃三寸之舌，洞悉人心利弊，于大国博弈之中辗转周旋。",
+      "身处屈辱绝境，不曾颓丧绝望。",
+      "一句“舌在，足矣”，便是他全部立身底气。",
+      "张仪从魏而来，从魏而去。",
+      "言语自有千钧力量，可以离间盟誓，亦可传述思想。",
+      "千载回望这段往事，我们看见的，不只是纵横权谋机变。",
+      "更是一介凡人，困于逆境，不肯沉沦的倔强风骨。",
+      "故事到此落幕。"
+    ],
+    hl: [6, 10],
+    fact: "结语综合前六节史实，作收束性回望，无史实偏差。"
+  }
+];
+
+const quotes = [
+  { text: "三晋多权变之士，夫言从衡强秦者，大抵皆三晋之人也。夫张仪之行事，甚于苏秦，然世恶苏秦者，以其先死，而仪振暴其短以扶其说，成其衡道。要之，此两人真倾危之士哉！", src: "《史记 · 张仪列传》" },
+  { text: "公孙衍、张仪岂不诚大丈夫哉？一怒而诸侯惧，安居而天下熄。", src: "《孟子 · 滕文公下》" },
+  { text: "苏秦为纵，张仪为横，横则秦帝，纵则楚王，所在国重，所去国轻。", src: "刘向《战国策叙录》" },
+  { text: "惠王用张仪之计，拔三川之地，西并巴蜀，北收上郡，南取汉中，包九夷，制鄢郢，东据成皋之险，割膏腴之壤，遂散六国之从，使之西面事秦，功施到今。", src: "李斯《谏逐客书》" },
+  { text: "张仪既相秦，为文檄告楚相曰：“始吾从若饮，我不盗而璧，若笞我。若善守汝国，我顾且盗而城！”", src: "《史记 · 张仪列传》" }
+];
+
+const lessons = [
+  {
+    title: "身处逆境，核心能力才是你的底牌（舌在足矣）",
+    body: "张仪蒙冤挨打、遍体鳞伤，不去纠结一时的屈辱，没有怨天尤人，只问舌头还在不在。这里的“舌头”，不只是口才，是一个人的核心本事：认知、表达、分析、解决问题的能力。",
+    takeaway: "人生难免遭遇误解、打压、低谷，外在的身份、名誉、境遇都可能被剥夺，但属于自己的<b>本事夺不走</b>。不必沉溺情绪抱怨苦难，守住自身核心能力，就还有翻盘的机会。",
+    warn: "不等于受了委屈就要一味忍气吞声。张仪是无力反抗时保存实力，而不是认同加害自己的人。"
+  },
+  {
+    title: "看清利弊，懂得换位思考，读懂人性与局势",
+    body: "张仪游说诸侯，不靠空洞大道理，不强行说服别人，而是站在各国君主的立场，讲清楚怎么做有利、怎么做会招祸，抓住对方的恐惧与诉求，才拆散合纵。",
+    takeaway: "沟通谈判不是争输赢、辩倒对方。想要说服他人，不要只讲自己想要什么，而是思考对方<b>关心什么、顾虑什么</b>。工作沟通、协商合作，先读懂对方诉求，效率会高很多。"
+  },
+  {
+    title: "能力要有平台，选择环境很重要",
+    body: "在楚国，张仪蒙受冤屈，没有施展空间；西行入秦，遇到赏识自己的秦惠文王，才拜相成事。同样一个人，换一个环境，境遇天差地别。",
+    takeaway: "个人才华固然重要，但平台与决策者的认可非常关键。当环境持续消耗你、完全不给你施展机会，不必死耗，可以寻找<b>更适配自己的舞台</b>。"
+  },
+  {
+    title: "要看见张仪的局限：权谋诈术不可当作处世范本",
+    body: "古代史家对张仪评价本就两极：景春赞叹他搅动天下；扬雄批评他是“诈人”，司马迁称他为倾危之士。张仪的纵横，很多建立在离间、权谋、利益交换之上，重短期博弈，缺少道义坚守：",
+    points: [
+      "职场生活不能照搬纵横诡计：现实长久的人际关系、团队合作，靠的是诚信、底线。一味玩弄话术、算计他人，短期得利，长久会损耗个人信誉。",
+      "他的成功高度依赖君主个人信任。秦惠文王去世，秦武王不喜欢他，过去的功绩立刻被流言消解，这是依附权力的风险。"
+    ],
+    takeaway: "不要把全部人生寄托在某一个人的赏识上，既要懂得<b>借力</b>，也要保持<b>自我独立</b>。"
+  },
+  {
+    title: "荣辱起落，要有接受时势变迁的心态",
+    body: "张仪曾经权倾列国，新君上台之后形势急转直下，他没有硬争权位，主动离开秦国去往魏国，坦然接受境遇滑落。",
+    takeaway: "人生不会永远处在高光。时代、环境、领导发生变化，风光不再是常态。懂得<b>审时度势</b>，懂得<b>进退</b>，也是一种智慧。"
+  }
+];
+
+/* ============ 3D 环形轮播渲染 ============ */
+const scene = document.getElementById("scene");
+const carousel = document.getElementById("carousel");
+const cTag = document.getElementById("cTag");
+const cTitle = document.getElementById("cTitle");
+const cGuide = document.getElementById("cGuide");
+const cOpen = document.getElementById("cOpen");
+const overlay = document.getElementById("overlay");
+const mTag = document.getElementById("mTag");
+const mTitle = document.getElementById("mTitle");
+const mSub = document.getElementById("mSub");
+const mBody = document.getElementById("mBody");
+const mFact = document.getElementById("mFact");
+
+const total = chapters.length;
+const THETA = 360 / total;
+const RADIUS = window.innerWidth < 600 ? 200 : 340;
+let active = 0;
+
+for (let i = 0; i < total; i++) {
+  const c = chapters[i];
+  const card = document.createElement("div");
+  card.className = "c-card";
+  card.dataset.index = i;
+  card.style.transform = `rotateY(${THETA * i}deg) translateZ(${RADIUS}px)`;
+  card.innerHTML = `
+    <div class="cc-node">${c.node}</div>
+    <div class="cc-tag">${c.tag}</div>
+    <div class="cc-title">${c.title}</div>
+    <div class="cc-sub">${c.sub}</div>`;
+  card.addEventListener("click", () => {
+    if (i === active) openModal();
+    else setActive(i);
+  });
+  carousel.appendChild(card);
+}
+
+const cardEls = carousel.querySelectorAll(".c-card");
+
+function setActive(i) {
+  active = (i + total) % total;
+  carousel.style.transform = `rotateY(${-THETA * active}deg)`;
+  cardEls.forEach((el, idx) => el.classList.toggle("active", idx === active));
+  const c = chapters[active];
+  cTag.innerText = c.tag;
+  cTitle.innerText = c.title + " · " + c.sub;
+  cGuide.innerText = c.guide;
+}
+
+const sectionLabel = ["序幕", "第一章", "第二章", "第三章", "第四章", "第五章", "终章"];
+
+function openModal() {
+  const c = chapters[active];
+  mTag.innerText = c.tag;
+  mTitle.innerText = c.title + " · " + c.sub;
+  mSub.innerText = sectionLabel[active] + "　《史记 · 张仪列传》";
+  let html = `<div class="guide">${c.guide}</div>`;
+  c.body.forEach((line, idx) => {
+    const hl = c.hl && c.hl.includes(idx);
+    html += `<p class="story${hl ? ' hl-line' : ''}">${line}</p>`;
+  });
+  if (c.orig) {
+    html += `<div class="orig"><div class="orig-tag">原文引文 · 《史记 · 张仪列传》</div>${c.orig}</div>`;
+  }
+  mBody.innerHTML = html;
+  mFact.innerText = c.fact;
+  mBody.scrollTop = 0;
+  overlay.style.display = "flex";
+  requestAnimationFrame(() => overlay.classList.add("show"));
+}
+
+function closeModal() {
+  overlay.classList.remove("show");
+  setTimeout(() => { overlay.style.display = "none"; }, 300);
+}
+
+document.getElementById("modalClose").addEventListener("click", closeModal);
+overlay.addEventListener("click", (e) => { if (e.target === overlay) closeModal(); });
+cOpen.addEventListener("click", openModal);
+document.getElementById("prevBtn").addEventListener("click", () => setActive(active - 1));
+document.getElementById("nextBtn").addEventListener("click", () => setActive(active + 1));
+
+document.addEventListener("keydown", (e) => {
+  if (overlay.style.display === "flex") {
+    if (e.key === "Escape") closeModal();
+    return;
+  }
+  if (e.key === "ArrowLeft") setActive(active - 1);
+  if (e.key === "ArrowRight") setActive(active + 1);
+});
+
+// 拖拽旋转
+let dragStartX = 0, dragging = false;
+scene.addEventListener("pointerdown", (e) => {
+  dragStartX = e.clientX;
+  dragging = true;
+  carousel.style.transition = "none";
+});
+window.addEventListener("pointermove", (e) => {
+  if (!dragging) return;
+  const dx = e.clientX - dragStartX;
+  carousel.style.transform = `rotateY(${-THETA * active + dx * 0.35}deg)`;
+});
+window.addEventListener("pointerup", (e) => {
+  if (!dragging) return;
+  dragging = false;
+  carousel.style.transition = "";
+  const dx = e.clientX - dragStartX;
+  if (Math.abs(dx) > 50) setActive(active + (dx < 0 ? 1 : -1));
+  else setActive(active);
+});
+
+// 滚轮旋转
+let wheelLock = false;
+scene.addEventListener("wheel", (e) => {
+  if (overlay.style.display === "flex") return;
+  e.preventDefault();
+  if (wheelLock) return;
+  wheelLock = true;
+  setTimeout(() => { wheelLock = false; }, 450);
+  setActive(e.deltaY > 0 ? active + 1 : active - 1);
+}, { passive: false });
+
+/* ============ 史论渲染 ============ */
+const quoteGrid = document.getElementById("quoteGrid");
+quoteGrid.innerHTML = quotes.map(q =>
+  `<div class="quote-card reveal"><div class="q-text">${q.text}</div><div class="q-src">${q.src}</div></div>`
+).join("");
+
+/* ============ 启示渲染 ============ */
+const lessonList = document.getElementById("lessonList");
+lessonList.innerHTML = lessons.map(l => {
+  let mid = l.points ? `<ul>${l.points.map(p => `<li>${p}</li>`).join("")}</ul>` : "";
+  let warn = l.warn ? `<div class="warn">${l.warn}</div>` : "";
+  return `<div class="lesson reveal">
+    <div class="num">${String(lessons.indexOf(l) + 1).padStart(2, "0")}</div>
+    <div class="l-body">
+      <h3>${l.title}</h3>
+      <p>${l.body}</p>
+      ${mid}
+      ${warn}
+      <div class="takeaway">${l.takeaway}</div>
+    </div>
+  </div>`;
+}).join("");
+
+/* ============ 滚动动效 ============ */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(en => { if (en.isIntersecting) en.target.classList.add("visible"); });
+}, { threshold: 0.12 });
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+const nav = document.getElementById("nav");
+window.addEventListener("scroll", () => {
+  nav.classList.toggle("scrolled", window.scrollY > 40);
+});
+
+setActive(0);
+</script>
+</body>
+</html>
